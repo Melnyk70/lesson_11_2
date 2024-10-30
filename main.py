@@ -1,16 +1,31 @@
-# This is a sample Python script.
+# ДЗ 11.2. Заповнення списку кубами чисел
+# Напишіть функцію-генератор generate_cube_numbers, яка формує набір кубів чисел,
+# починаючи з числа 2 до вказаної Вами величини. Тобто. генератор повинен працювати доти,
+# поки генерується значення менше зазначеної величини.
+# Нагадую, що вийти із генератора можна за допомогою return без параметрів.
+# def generate_cube_numbers(end):
+#     pass
+# from inspect import isgenerator
+# gen = generate_cube_numbers(1)
+# assert isgenerator(gen) == True, 'Test0'
+# assert list(generate_cube_numbers(10)) == [8], 'оскільки воно менше 10.'
+# assert list(generate_cube_numbers(100)) == [8, 27, 64], '5 у кубі це 125, а воно вже більше 100'
+# assert list(generate_cube_numbers(1000)) == [8, 27, 64, 125, 216, 343, 512, 729, 1000], '10 у кубі це 1000'
+def generate_cube_numbers(end):
+    num = 2
+    while True:
+        cube = num ** 3
+        if cube > end:
+            return
+        yield cube
+        num += 1
 
-# Press ⌃R to execute it or replace it with your code.
-# Press Double ⇧ to search everywhere for classes, files, tool windows, actions, and settings.
+from inspect import isgenerator
 
+gen = generate_cube_numbers(1)
+assert isgenerator(gen) == True, 'Test0'
+assert list(generate_cube_numbers(10)) == [8], '8 в кубі менше 10'
+assert list(generate_cube_numbers(100)) == [8, 27, 64], '5 в кубі це 125, а воно вже більше 100'
+assert list(generate_cube_numbers(1000)) == [8, 27, 64, 125, 216, 343, 512, 729, 1000], '10 в кубі це рівно 1000'
 
-def print_hi(name):
-    # Use a breakpoint in the code line below to debug your script.
-    print(f'Hi, {name}')  # Press ⌘F8 to toggle the breakpoint.
-
-
-# Press the green button in the gutter to run the script.
-if __name__ == '__main__':
-    print_hi('PyCharm')
-
-# See PyCharm help at https://www.jetbrains.com/help/pycharm/
+print('Ok')
